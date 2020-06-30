@@ -3,7 +3,7 @@ const fs = require('fs');
 
 async function main() {
   const client = new speech.SpeechClient();
-  const filename = './resources/audio.raw'; //TODO: upload clips of you talking!
+  const filename = './audio2.raw';
 
   const file = fs.readFileSync(filename);
   const audioBytes = file.toString('base64');
@@ -25,5 +25,9 @@ async function main() {
 
   const [response] = await client.recognize(request);
 
-  
+  // eslint-disable-next-line prettier/prettier
+  const transcription = response.results.map(result =>
+    result.alternatives[0].transcript).join('/n');
+  console.log(`Transciption: ${transcription}`);
 }
+main().catch(console.error);

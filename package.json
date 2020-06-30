@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@google-cloud/speech": "^4.1.0",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-google-speech-to-text": "^1.0.4"
