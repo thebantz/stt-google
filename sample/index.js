@@ -3,7 +3,7 @@ const fs = require('fs');
 
 async function main() {
   const client = new speech.SpeechClient();
-  const filename = './audio2.raw';
+  const filename = './audio.raw';
 
   const file = fs.readFileSync(filename);
   const audioBytes = file.toString('base64');
@@ -30,4 +30,5 @@ async function main() {
     result.alternatives[0].transcript).join('/n');
   console.log(`Transciption: ${transcription}`);
 }
+
 main().catch(console.error);
