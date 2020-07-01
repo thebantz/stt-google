@@ -1,14 +1,14 @@
 let rec = null;
 let audioStream = null;
 
-const recordButton = document.getElementById("recordButton");
-const transcribeButton = document.getElementById("transcribeButton");
+const recordButton = document.getElementById('recordButton');
+const transcribeButton = document.getElementById('transcribeButton');
 
-recordButton.addEventListener("click", startRecording);
-transcribeButton.addEventListener("click", transcribeText);
+recordButton.addEventListener('click', startRecording);
+transcribeButton.addEventListener('click', transcribeText);
 
 function startRecording() {
-  let constraints = { audio: true, video: false }
+  let constraints = { audio: true, video: false };
 
   recordButton.disabled = true;
   transcribeButton.disabled = false;
@@ -20,6 +20,7 @@ function startRecording() {
     rec = new Recorder(input, { numChannels: 1 })
     rec.record()
   }).catch(function (err) {
+    console.log(err);
     recordButton.disabled = false;
     transcribeButton.disabled = true;
   });
@@ -38,11 +39,11 @@ function uploadSoundData(blob) {
   let xhr = new XMLHttpRequest();
   xhr.onload = function (e) {
     if (this.readyState === 4) {
-      document.getElementById("output").innerHTML = `<br><br><strong>Result: </strong>${e.target.responseText}`
+      document.getElementById('output').innerHTML = `<br><br><strong>Result: </strong>${e.target.responseText}`;
     }
   };
   let formData = new FormData();
-  formData.append("audio_data", blob, filename);
-  xhr.open("POST", "/upload_sound", true);
+  formData.append('audio_data', blob, filename);
+  xhr.open('POST', '/upload_sound', true);
   xhr.send(formData);
-}
+};
